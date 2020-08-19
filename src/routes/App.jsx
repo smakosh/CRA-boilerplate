@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <>
-      {loading ? (
+      {!user || loading ? (
         <Spinner name="pacman" />
       ) : isLoggedIn ? (
         <Suspense fallback={<Spinner name="wandering-cubes" color="aqua" />}>
