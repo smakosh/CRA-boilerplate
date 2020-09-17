@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components/macro'
 
-const Theme = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   html {
     font-family: 'Questrial', 'Helvetica', sans-serif;
 
@@ -15,4 +15,4 @@ const Theme = createGlobalStyle`
   }
 `
 
-export default Theme
+export default GlobalStyle

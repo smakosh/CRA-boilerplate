@@ -5,14 +5,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import Spinner from 'react-spinkit'
 import { useDispatchUser } from 'features/auth/providers/UserProvider'
-import Container from 'components/common/Container'
-import InputField from 'components/common/InputField'
-import ErrorField from 'components/common/ErrorField'
-import Button from 'components/common/Button'
-import Card from 'components/common/Card'
-import SEO from 'components/common/SEO'
+import Container from 'ui/components/Container'
+import InputField from 'ui/components/InputField'
+import ErrorField from 'ui/components/ErrorField'
+import Button from 'ui/components/Button'
+import Card from 'ui/components/Card'
+import SEO from 'ui/components/SEO'
 import { register } from 'features/auth/actions'
-import { ENVIRONMENT } from 'config'
+import { ENVIRONMENT, RECAPTCHA_PUBLIC_KEY, LANDING_PAGE_URL } from 'config'
 import {
   Wrapper,
   Center,
@@ -110,7 +110,7 @@ export default () => {
                   <InputField error={errors.recaptcha && touched.recaptcha}>
                     <Field
                       component={Recaptcha}
-                      sitekey="xxxxx"
+                      sitekey={RECAPTCHA_PUBLIC_KEY}
                       name="recaptcha"
                       onChange={(value) => setFieldValue('recaptcha', value)}
                     />
@@ -134,11 +134,9 @@ export default () => {
                 <Center>
                   <p>
                     By signing up you agree to the{' '}
-                    <a href="https://your-website.com/terms-of-use">
-                      Terms of Use
-                    </a>{' '}
+                    <a href={`${LANDING_PAGE_URL}terms-of-use`}>Terms of Use</a>{' '}
                     and the{' '}
-                    <a href="https://your-website.com/privacy-policy">
+                    <a href={`${LANDING_PAGE_URL}privacy-policy`}>
                       Privacy Policy
                     </a>
                   </p>

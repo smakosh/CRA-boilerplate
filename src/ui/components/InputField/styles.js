@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   ${({ relative }) =>
     relative &&
     `
-        position: relative;
-    `}
+			position: relative;
+	`}
 
   input, textarea, select {
     width: 100%;
@@ -28,8 +28,8 @@ export const Wrapper = styled.div`
     ${({ error }) =>
       error &&
       `
-            border-color: red;
-        `}
+			border-color: red;
+	`}
   }
 `
 

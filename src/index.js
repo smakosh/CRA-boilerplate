@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from 'routes/App'
 import * as Sentry from '@sentry/browser'
+import App from 'routes/App'
+import { ENVIRONMENT, SENTRY_KEY } from 'config'
 
-if (process.env.REACT_APP_ENVIRONMENT !== 'development') {
+if (ENVIRONMENT !== 'development') {
   Sentry.init({
-    dsn: 'xxx',
+    dsn: SENTRY_KEY,
   })
 }
 
