@@ -1,6 +1,6 @@
 import React from 'react'
-import Container from 'components/common/Container'
-import SEO from 'components/common/SEO'
+import Container from 'ui/components/Container'
+import SEO from 'ui/components/SEO'
 
 export default () => (
   <Container>

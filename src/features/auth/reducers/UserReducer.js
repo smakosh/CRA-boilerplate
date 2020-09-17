@@ -1,4 +1,4 @@
-export default (user, action) => {
+export default (user = { isLoggedIn: false, loading: false }, action) => {
   switch (action.type) {
     case 'SAVE_USER':
       return {
@@ -11,6 +11,16 @@ export default (user, action) => {
         ...user,
         data: null,
         isLoggedIn: false,
+      }
+    case 'LOADING_TRUE':
+      return {
+        ...user,
+        loading: true,
+      }
+    case 'LOADING_FALSE':
+      return {
+        ...user,
+        loading: false,
       }
     default:
       return user

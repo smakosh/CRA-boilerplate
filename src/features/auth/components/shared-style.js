@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export const Wrapper = styled.div`
   padding: ${({ spacing }) => `${spacing}rem` || '1rem'} 0 0 0;

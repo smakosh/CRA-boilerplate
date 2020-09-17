@@ -10,16 +10,21 @@ export const login = async ({
   values,
 }) => {
   try {
+    await dispatchUser({ type: 'LOADING_TRUE' })
+
     const { data } = await axios.post(`${BASE_URL}auth/signin`, values)
     setAuthToken(data.token)
 
-    await dispatchUser({ type: 'SAVE_USER', payload: data.user })
+    await dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
 
+    await dispatchUser({ type: 'LOADING_FALSE' })
+
     history.push('/')
   } catch (err) {
+    await dispatchUser({ type: 'LOADING_FALSE' })
     setFieldError('email', err?.response?.data)
   }
 }
@@ -31,6 +36,8 @@ export const register = async ({
   values,
 }) => {
   try {
+    await dispatchUser({ type: 'LOADING_TRUE' })
+
     const { data } = await axios.post(`${BASE_URL}auth/signup`, values)
     setAuthToken(data.token)
 
@@ -39,21 +46,28 @@ export const register = async ({
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
 
+    await dispatchUser({ type: 'LOADING_FALSE' })
+
     history.push('/')
   } catch (err) {
+    await dispatchUser({ type: 'LOADING_FALSE' })
     setFieldError('email', err?.response?.data)
   }
 }
 
 export const logout = async (dispatch) => {
   try {
+    await dispatch({ type: 'LOADING_TRUE' })
     await dispatch({ type: 'LOGOUT' })
 
     window.localStorage.removeItem('token')
     setAuthToken(false)
 
-    history.push('/signup')
+    await dispatch({ type: 'LOADING_FALSE' })
+
+    history.push('/')
   } catch (err) {
+    await dispatch({ type: 'LOADING_FALSE' })
     console.log(err)
   }
 }

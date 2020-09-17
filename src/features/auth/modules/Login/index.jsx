@@ -4,15 +4,15 @@ import Recaptcha from 'react-google-recaptcha'
 import Spinner from 'react-spinkit'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import Container from 'components/common/Container'
-import InputField from 'components/common/InputField'
-import ErrorField from 'components/common/ErrorField'
-import Button from 'components/common/Button'
-import Card from 'components/common/Card'
-import SEO from 'components/common/SEO'
+import { ENVIRONMENT, RECAPTCHA_PUBLIC_KEY } from 'config'
+import Container from 'ui/components/Container'
+import InputField from 'ui/components/InputField'
+import ErrorField from 'ui/components/ErrorField'
+import Button from 'ui/components/Button'
+import Card from 'ui/components/Card'
+import SEO from 'ui/components/SEO'
 import { login } from 'features/auth/actions'
 import { useDispatchUser } from 'features/auth/providers/UserProvider'
-import { ENVIRONMENT } from 'config'
 import {
   Wrapper,
   Title,
@@ -81,7 +81,7 @@ export default () => {
                   <InputField error={errors.recaptcha && touched.recaptcha}>
                     <Field
                       component={Recaptcha}
-                      sitekey="xxxxxx"
+                      sitekey={RECAPTCHA_PUBLIC_KEY}
                       name="recaptcha"
                       onChange={(value) => setFieldValue('recaptcha', value)}
                     />
