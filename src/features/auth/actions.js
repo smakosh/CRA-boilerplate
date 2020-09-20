@@ -10,8 +10,6 @@ export const login = async ({
   values,
 }) => {
   try {
-    await dispatchUser({ type: 'LOADING_TRUE' })
-
     const { data } = await axios.post(`${BASE_URL}auth/signin`, values)
     setAuthToken(data.token)
 
@@ -20,11 +18,8 @@ export const login = async ({
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
 
-    await dispatchUser({ type: 'LOADING_FALSE' })
-
     history.push('/')
   } catch (err) {
-    await dispatchUser({ type: 'LOADING_FALSE' })
     setFieldError('email', err?.response?.data)
   }
 }
@@ -36,8 +31,6 @@ export const register = async ({
   values,
 }) => {
   try {
-    await dispatchUser({ type: 'LOADING_TRUE' })
-
     const { data } = await axios.post(`${BASE_URL}auth/signup`, values)
     setAuthToken(data.token)
 
@@ -46,11 +39,8 @@ export const register = async ({
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
 
-    await dispatchUser({ type: 'LOADING_FALSE' })
-
     history.push('/')
   } catch (err) {
-    await dispatchUser({ type: 'LOADING_FALSE' })
     setFieldError('email', err?.response?.data)
   }
 }
