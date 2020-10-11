@@ -10,35 +10,23 @@ import { Wrapper, Flex, Links } from './styles'
 export default () => {
   const { dispatchUser: dispatch } = useDispatchUser()
   const { user } = useUser()
-
   return (
     <Wrapper>
       <Flex as={Container}>
         <Link to="/">
           <Logo />
         </Link>
-        <Links>
-          {user.isLoggedIn ? (
-						<>
-						<NavLink
-							to="/utilisateur"
-              size="large"
-              variant="secondary"
-            >
-              Utilisateur
-            </NavLink>
-						<NavLink
-              to="/article"
-              size="large"
-              variant="secondary"
-            >
+        {user.isLoggedIn ? (
+          <>
+            {user.data.profil.name === 'Administrateur' && (
+              <NavLink to="/utilisateur" size="large" variant="secondary">
+                Utilisateur
+              </NavLink>
+            )}
+            <NavLink to="/article" size="large" variant="secondary">
               Article
             </NavLink>
-						<NavLink
-              to="/client"
-              size="large"
-              variant="secondary"
-            >
+            <NavLink to="/client" size="large" variant="secondary">
               Client
             </NavLink>
             <Button
@@ -49,18 +37,17 @@ export default () => {
             >
               Logout
             </Button>
-						</>
-          ) : (
-            <>
-              <NavLink activeClassName="active" exact to="/">
-                Login
-              </NavLink>
-              {/* <Button as={NavLink} to="/signup" size="large" variant="primary">
+          </>
+        ) : (
+          <>
+            <NavLink activeClassName="active" exact to="/">
+              Login
+            </NavLink>
+            {/* <Button as={NavLink} to="/signup" size="large" variant="primary">
                 Sign up
               </Button> */}
-            </>
-          )}
-        </Links>
+          </>
+        )}
       </Flex>
     </Wrapper>
   )

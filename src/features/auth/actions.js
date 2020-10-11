@@ -13,7 +13,7 @@ export const login = async ({
 		const { data } = await axios.post(`/login`, values)
     setAuthToken(data.token)
 
-    await dispatchUser({ type: 'SAVE_USER', payload: data?.user })
+    await dispatchUser({ type: 'SAVE_USER', payload: data })
 
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
