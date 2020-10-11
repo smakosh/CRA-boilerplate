@@ -10,7 +10,7 @@ export const login = async ({
   values,
 }) => {
   try {
-    const { data } = await axios.post(`${BASE_URL}auth/signin`, values)
+		const { data } = await axios.post(`/login`, values)
     setAuthToken(data.token)
 
     await dispatchUser({ type: 'SAVE_USER', payload: data?.user })

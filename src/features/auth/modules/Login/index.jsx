@@ -34,7 +34,7 @@ export default () => {
             recaptcha: '',
           }}
           validationSchema={Yup.object().shape({
-            email: Yup.string().email().required(),
+            email: Yup.string().required(),
             password: Yup.string().required(),
             recaptcha:
               ENVIRONMENT !== 'development' &&
@@ -51,7 +51,7 @@ export default () => {
                 dispatchUser,
                 setFieldError,
                 setSubmitting,
-                values: { email, password },
+                values: { login: email, password },
               })
             } catch (err) {
               setSubmitting(false)
@@ -62,9 +62,8 @@ export default () => {
             <Form onSubmit={handleSubmit}>
               <Title>Login</Title>
               <CardWrapper as={Card}>
-                <InputField label="Email" error={errors.email && touched.email}>
-                  <Field type="email" name="email" placeholder="Email" />
-                  <ErrorMessage component={ErrorField} name="email" />
+                <InputField label="Email" >
+                  <Field type="text" name="email" placeholder="Email" />
                 </InputField>
                 <InputField
                   label="Password"
@@ -103,10 +102,10 @@ export default () => {
                   </Button>
                 </Center>
                 <Center>
-                  <p>
+                  {/* <p>
                     Don’t have an account? No worries,{' '}
                     <Link to="/signup">you can create one now</Link>
-                  </p>
+                  </p> */}
                 </Center>
               </CardWrapper>
             </Form>

@@ -32,9 +32,9 @@ export default () => {
               <NavLink activeClassName="active" exact to="/">
                 Login
               </NavLink>
-              <Button as={NavLink} to="/signup" size="large" variant="primary">
+              {/* <Button as={NavLink} to="/signup" size="large" variant="primary">
                 Sign up
-              </Button>
+              </Button> */}
             </>
           )}
         </Links>
