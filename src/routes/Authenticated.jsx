@@ -15,9 +15,10 @@ return	(
   <Router history={history}>
     <Header />
     <Switch>
+      <Route path="/" exact component={Utilisateur} />
+      <Route path="/utilisateur" exact component={Utilisateur} />
       <Route path="/article" exact component={Article} />
       <Route path="/client" exact component={Client} />
-      <Route path="/utilisateur" exact component={Utilisateur} />
       <Route component={NotFound} />
     </Switch>
   </Router>

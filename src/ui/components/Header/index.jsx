@@ -20,30 +20,27 @@ export default () => {
         <Links>
           {user.isLoggedIn ? (
 						<>
-						<Button
-              type="button"
-              onClick={() => logout(dispatch)}
+						<NavLink
+							to="/utilisateur"
               size="large"
               variant="secondary"
             >
               Utilisateur
-            </Button>
-						<Button
-              type="button"
-              onClick={() => logout(dispatch)}
+            </NavLink>
+						<NavLink
+              to="/article"
               size="large"
               variant="secondary"
             >
               Article
-            </Button>
-						<Button
-              type="button"
-              onClick={() => logout(dispatch)}
+            </NavLink>
+						<NavLink
+              to="/client"
               size="large"
               variant="secondary"
             >
               Client
-            </Button>
+            </NavLink>
             <Button
               type="button"
               onClick={() => logout(dispatch)}
