@@ -19,6 +19,31 @@ export default () => {
         </Link>
         <Links>
           {user.isLoggedIn ? (
+						<>
+						<Button
+              type="button"
+              onClick={() => logout(dispatch)}
+              size="large"
+              variant="secondary"
+            >
+              Utilisateur
+            </Button>
+						<Button
+              type="button"
+              onClick={() => logout(dispatch)}
+              size="large"
+              variant="secondary"
+            >
+              Article
+            </Button>
+						<Button
+              type="button"
+              onClick={() => logout(dispatch)}
+              size="large"
+              variant="secondary"
+            >
+              Client
+            </Button>
             <Button
               type="button"
               onClick={() => logout(dispatch)}
@@ -27,6 +52,7 @@ export default () => {
             >
               Logout
             </Button>
+						</>
           ) : (
             <>
               <NavLink activeClassName="active" exact to="/">

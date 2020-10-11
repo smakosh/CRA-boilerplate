@@ -2,16 +2,24 @@ import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import history from 'helpers/history'
 import Header from 'ui/components/Header'
-import Dashboard from 'features/dashboard/modules/Dashboard'
+import { useUser } from 'features/auth/providers/UserProvider'
+import Article from 'features/dashboard/modules/article'
+import Client from 'features/dashboard/modules/client'
+import Utilisateur from 'features/dashboard/modules/utilisateur'
 
 const NotFound = () => <h2>404 Not Found</h2>
 
-export default () => (
+export default () => {
+  const { user } = useUser();
+return	(
   <Router history={history}>
     <Header />
     <Switch>
-      <Route path="/" exact component={Dashboard} />
+      <Route path="/article" exact component={Article} />
+      <Route path="/client" exact component={Client} />
+      <Route path="/utilisateur" exact component={Utilisateur} />
       <Route component={NotFound} />
     </Switch>
   </Router>
 )
+}
