@@ -73,17 +73,18 @@ export default function Utilisateur() {
             <div className="col col-9">Téléphone</div>
             <div className="col col-10">Date Création</div>
           </li>
-
-          {utilisateurs &&
-            utilisateurs.map((utilisateur, index) => {
-              return (
-                <UtilisateurComp
-                  utilisateur={utilisateur}
-                  key={index}
-                  setUtilisateurs={setUtilisateurs}
-                />
-              )
-            })}
+          <div className="custom-items">
+            {utilisateurs &&
+              utilisateurs.map((utilisateur, index) => {
+                return (
+                  <UtilisateurComp
+                    utilisateur={utilisateur}
+                    key={index}
+                    setUtilisateurs={setUtilisateurs}
+                  />
+                )
+              })}
+          </div>
         </ul>
       </div>
     </Container>

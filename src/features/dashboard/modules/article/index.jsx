@@ -40,6 +40,7 @@ export default function Article() {
       <div class="container">
         <div className="header">
           <h2>Article</h2>
+					
           <Button
             onClick={(e) =>
               (document.getElementById('myModal3').style.display = 'block')
@@ -69,17 +70,18 @@ export default function Article() {
             <div className="col col-4">Reference</div>
             <div className="col col-5">Type</div>
           </li>
-
-          {articles &&
-            articles.map((article, index) => {
-              return (
-                <ArticleComp
-                  article={article}
-                  key={index}
-                  setArticles={setArticles}
-                />
-              )
-            })}
+          <div className="custom-items">
+            {articles &&
+              articles.map((article, index) => {
+                return (
+                  <ArticleComp
+                    article={article}
+                    key={index}
+                    setArticles={setArticles}
+                  />
+                )
+              })}
+          </div>
         </ul>
       </div>
     </Container>

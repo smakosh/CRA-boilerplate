@@ -133,3 +133,10 @@ h2 {
   text-decoration: none;
   cursor: pointer;
 }
+
+.custom-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}

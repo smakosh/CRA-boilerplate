@@ -71,16 +71,18 @@ export default function Client() {
             <div className="col col-4">Adresse</div>
             <div className="col col-4">Date Création</div>
           </li>
-          {clients &&
-            clients.map((client, index) => {
-              return (
-                <ClientComp
-                  client={client}
-                  key={index}
-                  setClients={setClients}
-                />
-              )
-            })}
+          <div className="custom-items">
+            {clients &&
+              clients.map((client, index) => {
+                return (
+                  <ClientComp
+                    client={client}
+                    key={index}
+                    setClients={setClients}
+                  />
+                )
+              })}
+          </div>
         </ul>
       </div>
     </Container>
