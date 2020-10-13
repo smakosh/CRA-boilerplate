@@ -112,7 +112,7 @@ export default (props) => {
 
         <Center>
           <Button type="submit" size="large" variant="primary" onClick={create}>
-            <NavLink to="#">Enregistrer</NavLink>
+            <span>Enregistrer</span>
           </Button>
           <Button
             type="cancel"
@@ -122,7 +122,7 @@ export default (props) => {
               (document.getElementById('myModal').style.display = 'none')
             }
           >
-            <NavLink to="#">Annuler</NavLink>
+            <span>Annuler</span>
           </Button>
         </Center>
         <Center>

@@ -16,6 +16,7 @@ export default () => {
       <Header />
       <Switch>
         <Route path="/" exact component={Utilisateur} />
+        <Route path="/utilisateur" exact component={Utilisateur} />
         <Route path="/article" exact component={Article} />
         <Route path="/client" exact component={Client} />
         <Route component={NotFound} />
