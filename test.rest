@@ -1,13 +1,12 @@
-POST http://localhost:8181/utilisateur/add
+POST http://localhost:8181/client/add
 Content-Type: application/json
 
 {
-	"login": "login",
-        "password":"password",
         "mail": "mail",
-        "idprofil": 1,
+        "ville": 2,
         "tel":"mail",
         "nom":"mail",
-        "prenom":"mail"
+        "code":"mail",
+				"addresse": "wefjk"
 }
 

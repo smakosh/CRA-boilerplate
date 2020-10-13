@@ -1,76 +1,86 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { fetchClients, createClient } from 'features/dashboard/actions/client'
+import { NavLink } from 'react-router-dom'
 import Container from 'ui/components/Container'
 import SEO from 'ui/components/SEO'
+import Button from 'ui/components/Button'
+import NewClient from './NewClient'
+import ClientComp from './clientComp'
 
 export default function Client() {
+  const [clients, setClients] = useState([])
+  const [newClient] = useState({})
+  useEffect(() => {
+    async function fetchClient() {
+      try {
+        const data = await axios.get(`/client/findAll`)
+        setClients(data.data)
+      } catch (error) {
+        alert(error.message)
+      }
+    }
+    fetchClient()
+    console.log(clients)
+  }, [])
+  async function create(e) {
+    e.preventDefault()
+    try {
+      const respo = await createClient(newClient)
+      const respo1 = fetchClients()
+      setClients(respo1.data)
+    } catch (error) {
+      alert('Error while creating user', error.message)
+    }
+  }
   return (
     <Container>
       <SEO url="/" title="Client" />
       <div class="container">
-        <h2>Client</h2>
-        <ul class="responsive-table">
-          <li class="table-header">
-            <div class="col col-1">Job Id</div>
-            <div class="col col-2">Customer Name</div>
-            <div class="col col-3">Amount Due</div>
-            <div class="col col-4">Payment Status</div>
+        <div className="header">
+          <h2>Client</h2>
+          <Button
+            onClick={(e) =>
+              (document.getElementById('myModal2').style.display = 'block')
+            }
+          >
+            {<NavLink to="#">Creer un Client</NavLink>}
+          </Button>
+          <div id="myModal2" className="modal">
+            <div className="modal-content">
+              <span
+                className="close"
+                onClick={(e) =>
+                  (document.getElementById('myModal2').style.display = 'none')
+                }
+              >
+                &times;
+              </span>
+              <NewClient setClients={setClients} />
+            </div>
+          </div>
+        </div>
+        <ul className="responsive-table">
+          <li className="table-header">
+            <div className="col col-1">Client Id</div>
+            <div className="col col-2">Nom</div>
+            <div className="col col-3">Ville</div>
+            <div className="col col-4">Email</div>
+            <div className="col col-4">Téléphone</div>
+            <div className="col col-4">Code</div>
+            <div className="col col-4">Adresse</div>
+            <div className="col col-4">Date Création</div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42235
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Doe
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $350
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42442
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              Jennifer Smith
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $220
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42257
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Smith
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $341
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42311
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Carpenter
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $115
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
+          {clients &&
+            clients.map((client, index) => {
+              return (
+                <ClientComp
+                  client={client}
+                  key={index}
+                  setClients={setClients}
+                />
+              )
+            })}
         </ul>
       </div>
     </Container>

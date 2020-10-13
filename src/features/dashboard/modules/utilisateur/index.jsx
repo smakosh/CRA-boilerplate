@@ -12,7 +12,6 @@ import './styles.scss'
 export default function Utilisateur() {
   const [utilisateurs, setUtilisateurs] = useState([])
   const [newUtilisateur] = useState({})
-  const [creating, setCreating] = useState(false)
   useEffect(() => {
     async function fetchUtilisateurs() {
       try {
