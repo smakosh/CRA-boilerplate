@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 
 export const Wrapper = styled.div`
-  padding: ${({ spacing }) => `${spacing}rem` || '1rem'} 0 0 0;
+  padding: ${({ spacing }) => `${spacing}rem` || '.5rem'} 0 0 0;
   max-width: 60%;
   margin: 0 auto;
 

@@ -1,7 +1,13 @@
-POST http://localhost:8181/login
+POST http://localhost:8181/utilisateur/add
 Content-Type: application/json
 
 {
-	"login": "elomari",
-	"password": "elomari"
+	"login": "login",
+        "password":"password",
+        "mail": "mail",
+        "idprofil": 1,
+        "tel":"mail",
+        "nom":"mail",
+        "prenom":"mail"
 }
+

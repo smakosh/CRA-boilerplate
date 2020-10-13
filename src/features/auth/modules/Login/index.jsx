@@ -59,9 +59,9 @@ export default () => {
         >
           {({ isSubmitting, handleSubmit, errors, touched, setFieldValue }) => (
             <Form onSubmit={handleSubmit}>
-              <Title>Login</Title>
+              <Title>Creer</Title>
               <CardWrapper as={Card}>
-                <InputField label="Email" >
+                <InputField label="Email">
                   <Field type="text" name="email" placeholder="Email" />
                 </InputField>
                 <InputField

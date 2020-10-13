@@ -10,17 +10,16 @@ import Utilisateur from 'features/dashboard/modules/utilisateur'
 const NotFound = () => <h2>404 Not Found</h2>
 
 export default () => {
-  const { user } = useUser();
-return	(
-  <Router history={history}>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={Utilisateur} />
-      <Route path="/utilisateur" exact component={Utilisateur} />
-      <Route path="/article" exact component={Article} />
-      <Route path="/client" exact component={Client} />
-      <Route component={NotFound} />
-    </Switch>
-  </Router>
-)
+  const { user } = useUser()
+  return (
+    <Router history={history}>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Utilisateur} />
+        <Route path="/article" exact component={Article} />
+        <Route path="/client" exact component={Client} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
+  )
 }
