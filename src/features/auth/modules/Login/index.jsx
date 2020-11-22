@@ -12,7 +12,7 @@ import Button from 'ui/components/Button'
 import Card from 'ui/components/Card'
 import SEO from 'ui/components/SEO'
 import { login } from 'features/auth/actions'
-import { useDispatchUser } from 'features/auth/providers/UserProvider'
+import useDispatchUser from 'features/auth/hooks/useDispatchUser'
 import {
   Wrapper,
   Title,
@@ -20,7 +20,7 @@ import {
   Center,
 } from 'features/auth/components/shared-style'
 
-export default () => {
+const Login = () => {
   const { dispatchUser } = useDispatchUser()
 
   return (
@@ -116,3 +116,5 @@ export default () => {
     </Container>
   )
 }
+
+export default Login

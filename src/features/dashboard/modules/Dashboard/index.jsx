@@ -2,9 +2,11 @@ import React from 'react'
 import Container from 'ui/components/Container'
 import SEO from 'ui/components/SEO'
 
-export default () => (
+const Dashboard = () => (
   <Container>
     <SEO url="/" title="Dashboard" />
     <h1>Dashboard</h1>
   </Container>
 )
+
+export default Dashboard

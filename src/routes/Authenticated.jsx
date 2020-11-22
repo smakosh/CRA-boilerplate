@@ -6,7 +6,7 @@ import Dashboard from 'features/dashboard/modules/Dashboard'
 
 const NotFound = () => <h2>404 Not Found</h2>
 
-export default () => (
+const Authenticated = () => (
   <Router history={history}>
     <Header />
     <Switch>
@@ -15,3 +15,5 @@ export default () => (
     </Switch>
   </Router>
 )
+
+export default Authenticated
