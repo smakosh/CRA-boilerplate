@@ -1,4 +1,4 @@
-export default (user = { isLoggedIn: false, loading: false }, action) => {
+const UserReducer = (user = { isLoggedIn: false, loading: false }, action) => {
   switch (action.type) {
     case 'SAVE_USER':
       return {
@@ -23,6 +23,8 @@ export default (user = { isLoggedIn: false, loading: false }, action) => {
         loading: false,
       }
     default:
-      return user
+      throw new Error(`Unhandled action type: ${action.type}`)
   }
 }
+
+export default UserReducer

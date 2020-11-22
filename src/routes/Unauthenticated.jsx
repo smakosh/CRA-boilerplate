@@ -7,7 +7,7 @@ import Header from 'ui/components/Header'
 
 const NotFound = () => <h2>404 Not Found</h2>
 
-export default () => (
+const Unauthenticated = () => (
   <Router history={history}>
     <Header />
     <Switch>
@@ -17,3 +17,5 @@ export default () => (
     </Switch>
   </Router>
 )
+
+export default Unauthenticated

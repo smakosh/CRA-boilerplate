@@ -3,7 +3,7 @@ import axios from 'axios'
 import setAuthToken from 'helpers/setAuthToken'
 import { BASE_URL } from 'config'
 
-export default (user, dispatch) => {
+const useFetchUser = (user, dispatch) => {
   const [loading, setLoading] = useState(true)
 
   const fetchUser = useCallback(async () => {
@@ -35,3 +35,5 @@ export default (user, dispatch) => {
     isLoggedIn: user.isLoggedIn,
   }
 }
+
+export default useFetchUser

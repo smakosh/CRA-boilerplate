@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import Spinner from 'react-spinkit'
-import UserProvider, { useUser } from 'features/auth/providers/UserProvider'
+import UserProvider from 'features/auth/providers/UserProvider'
+import { useUser } from 'features/auth/hooks/useUser'
 import GlobalStyle from 'ui/theme/global-style'
 import { ThemeProvider } from 'styled-components'
 import theme from 'ui/theme/theme'
@@ -8,7 +9,7 @@ import theme from 'ui/theme/theme'
 const Authenticated = lazy(() => import('./Authenticated'))
 const Unauthenticated = lazy(() => import('./Unauthenticated'))
 
-const App = () => {
+const Routes = () => {
   const { user } = useUser()
 
   return user.isLoggedIn ? (
@@ -22,11 +23,13 @@ const App = () => {
   )
 }
 
-export default () => (
+const App = () => (
   <ThemeProvider theme={theme}>
     <UserProvider>
       <GlobalStyle />
-      <App />
+      <Routes />
     </UserProvider>
   </ThemeProvider>
 )
+
+export default App

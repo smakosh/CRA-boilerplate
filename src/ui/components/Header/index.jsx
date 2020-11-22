@@ -3,12 +3,13 @@ import { NavLink, Link } from 'react-router-dom'
 import Button from 'ui/components/Button'
 import Container from 'ui/components/Container'
 import Logo from 'ui/components/Logo'
-import { useDispatchUser, useUser } from 'features/auth/providers/UserProvider'
+import useUser from 'features/auth/hooks/useUser'
+import useDispatchUser from 'features/auth/hooks/useDispatchUser'
 import { logout } from 'features/auth/actions'
 import { Wrapper, Flex, Links } from './styles'
 
-export default () => {
-  const { dispatchUser: dispatch } = useDispatchUser()
+const Header = () => {
+  const { dispatchUser } = useDispatchUser()
   const { user } = useUser()
 
   return (
@@ -21,7 +22,7 @@ export default () => {
           {user.isLoggedIn ? (
             <Button
               type="button"
-              onClick={() => logout(dispatch)}
+              onClick={() => logout(dispatchUser)}
               size="large"
               variant="secondary"
             >
@@ -42,3 +43,5 @@ export default () => {
     </Wrapper>
   )
 }
+
+export default Header
