@@ -1,5 +1,7 @@
 # CRA boilerplate
 
+> [TypScript version](https://github.com/smakosh/CRA-boilerplate/tree/typescript)
+
 1- Clone the repository
 
 ```bash
