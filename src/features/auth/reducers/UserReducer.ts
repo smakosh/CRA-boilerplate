@@ -1,4 +1,15 @@
-const UserReducer = (user = { isLoggedIn: false, loading: false }, action) => {
+import type { StateUser, UserActions } from 'features/auth/interfaces'
+
+export const INITIAL_STATE = {
+  isLoggedIn: false,
+  loading: false,
+  data: null,
+}
+
+const UserReducer = (
+  user: typeof INITIAL_STATE,
+  action: UserActions
+): StateUser => {
   switch (action.type) {
     case 'SAVE_USER':
       return {
@@ -23,7 +34,7 @@ const UserReducer = (user = { isLoggedIn: false, loading: false }, action) => {
         loading: false,
       }
     default:
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error()
   }
 }
 

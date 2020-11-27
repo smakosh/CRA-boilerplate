@@ -2,18 +2,32 @@ import history from 'helpers/history'
 import axios from 'axios'
 import setAuthToken from 'helpers/setAuthToken'
 import { BASE_URL } from 'config'
+import { DispatchUser } from 'features/auth/interfaces'
+
+export type UserValues = {
+  email: string
+  password: string
+  username?: string
+}
+
+type LoginSignupArgs = {
+  dispatchUser: DispatchUser
+  setFieldError: (key: string, value: string) => void
+  setSubmitting: (arg: boolean) => void
+  values: UserValues
+}
 
 export const login = async ({
   dispatchUser,
   setFieldError,
   setSubmitting,
   values,
-}) => {
+}: LoginSignupArgs) => {
   try {
     const { data } = await axios.post(`${BASE_URL}auth/signin`, values)
     setAuthToken(data.token)
 
-    await dispatchUser({ type: 'SAVE_USER', payload: data?.user })
+    dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
@@ -29,12 +43,12 @@ export const register = async ({
   setFieldError,
   setSubmitting,
   values,
-}) => {
+}: LoginSignupArgs) => {
   try {
     const { data } = await axios.post(`${BASE_URL}auth/signup`, values)
     setAuthToken(data.token)
 
-    await dispatchUser({ type: 'SAVE_USER', payload: data?.user })
+    dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
     window.localStorage.setItem('token', data.token)
     setSubmitting(false)
@@ -45,15 +59,15 @@ export const register = async ({
   }
 }
 
-export const logout = async (dispatch) => {
+export const logout = async (dispatch: DispatchUser) => {
   try {
-    await dispatch({ type: 'LOADING_TRUE' })
-    await dispatch({ type: 'LOGOUT' })
+    dispatch({ type: 'LOADING_TRUE' })
+    dispatch({ type: 'LOGOUT' })
 
     window.localStorage.removeItem('token')
     setAuthToken(false)
 
-    await dispatch({ type: 'LOADING_FALSE' })
+    dispatch({ type: 'LOADING_FALSE' })
 
     history.push('/')
   } catch (err) {

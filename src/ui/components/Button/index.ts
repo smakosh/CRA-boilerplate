@@ -1,25 +1,32 @@
 import styled from 'styled-components/macro'
 
-export default styled.button`
-	text-decoration: none;
-	text-transform: uppercase;
-	border-radius: 0.3rem;
-	cursor: pointer;
-	font-size: 12pt;
-	transition: .3s;
+interface ButtonProps {
+  wide?: boolean
+  state?: string
+  variant: string
+  size: string
+}
 
-	&:hover {
-		transition: .3s;
-	}
+export default styled.button<ButtonProps>`
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 12pt;
+  transition: 0.3s;
 
-	${({ wide }) =>
+  &:hover {
+    transition: 0.3s;
+  }
+
+  ${({ wide }) =>
     wide &&
     `
       width: 100%;
       text-align: center;
 	`}
 
-	${({
+  ${({
     variant,
     state,
     theme: {
@@ -62,21 +69,21 @@ export default styled.button`
 				`
       case 'medium':
         return `
-						padding: 0.4rem 1.8rem;
-						font-size: 10pt;
-					`
+					padding: 0.4rem 1.8rem;
+					font-size: 10pt;
+				`
       case 'small':
         return `
-						padding: 0.3rem 1.6rem;
-						font-size: 8pt;
-					`
+					padding: 0.3rem 1.6rem;
+					font-size: 8pt;
+				`
       default:
         return null
     }
   }}
 	
 	&:disabled {
-		background-color: #cccccc;
-		color: #666666;
-	}
+    background-color: #cccccc;
+    color: #666666;
+  }
 `

@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  spacing?: number
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   padding: ${({ spacing }) => `${spacing}rem` || '1rem'} 0 0 0;
   max-width: 60%;
   margin: 0 auto;

@@ -10,7 +10,7 @@ const Authenticated = lazy(() => import('./Authenticated'))
 const Unauthenticated = lazy(() => import('./Unauthenticated'))
 
 const Routes = () => {
-  const { user } = useUser()
+  const user = useUser()
 
   return user.isLoggedIn ? (
     <Suspense fallback={<Spinner name="wandering-cubes" color="aqua" />}>

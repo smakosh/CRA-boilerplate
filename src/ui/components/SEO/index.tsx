@@ -9,20 +9,27 @@ import {
   TWITTER_ACCOUNT_URL,
 } from 'config'
 
+interface SEOProps {
+  url?: string
+  title?: string
+  description?: string
+  cover?: string
+}
+
 const SEO = ({
   url,
   title = 'Boilerplate',
   description = 'description',
   cover,
-}) => {
+}: SEOProps) => {
   const initializeReactGA = () => {
-    ReactGA.initialize(GA_ANALYTICS_KEY)
-    ReactGA.pageview(url)
+    if (GA_ANALYTICS_KEY && url) {
+      ReactGA.initialize(GA_ANALYTICS_KEY)
+      ReactGA.pageview(url)
+    }
   }
 
-  if (GA_ANALYTICS_KEY) {
-    initializeReactGA()
-  }
+  initializeReactGA()
 
   return (
     <Helmet>

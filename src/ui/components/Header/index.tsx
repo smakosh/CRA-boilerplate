@@ -9,8 +9,8 @@ import { logout } from 'features/auth/actions'
 import { Wrapper, Flex, Links } from './styles'
 
 const Header = () => {
-  const { dispatchUser } = useDispatchUser()
-  const { user } = useUser()
+  const dispatchUser = useDispatchUser()
+  const user = useUser()
 
   return (
     <Wrapper>

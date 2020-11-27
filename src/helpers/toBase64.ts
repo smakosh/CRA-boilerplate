@@ -1,4 +1,4 @@
-const toBase64 = (file) =>
+const toBase64 = (file: Blob) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
 

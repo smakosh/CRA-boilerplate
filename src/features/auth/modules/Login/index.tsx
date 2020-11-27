@@ -21,7 +21,7 @@ import {
 } from 'features/auth/components/shared-style'
 
 const Login = () => {
-  const { dispatchUser } = useDispatchUser()
+  const dispatchUser = useDispatchUser()
 
   return (
     <Container>
@@ -37,8 +37,11 @@ const Login = () => {
             email: Yup.string().email().required(),
             password: Yup.string().required(),
             recaptcha:
-              ENVIRONMENT !== 'development' &&
-              Yup.string().required(
+              (ENVIRONMENT !== 'development' &&
+                Yup.string().required(
+                  'Robots are not welcome yet! maybe soon 😊'
+                )) ||
+              Yup.boolean().required(
                 'Robots are not welcome yet! maybe soon 😊'
               ),
           })}
@@ -83,7 +86,9 @@ const Login = () => {
                       component={Recaptcha}
                       sitekey={RECAPTCHA_PUBLIC_KEY}
                       name="recaptcha"
-                      onChange={(value) => setFieldValue('recaptcha', value)}
+                      onChange={(value: string | boolean) =>
+                        setFieldValue('recaptcha', value)
+                      }
                     />
                     <ErrorMessage component={ErrorField} name="recaptcha" />
                   </InputField>

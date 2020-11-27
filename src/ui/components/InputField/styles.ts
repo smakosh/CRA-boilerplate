@@ -1,6 +1,11 @@
 import styled from 'styled-components/macro'
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  relative?: boolean
+  error?: boolean
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   padding: 1rem 0;
 
   ${({ relative }) =>
