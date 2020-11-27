@@ -65,13 +65,16 @@ const Login = () => {
             <Form onSubmit={handleSubmit}>
               <Title>Login</Title>
               <CardWrapper as={Card}>
-                <InputField label="Email" error={errors.email && touched.email}>
+                <InputField
+                  label="Email"
+                  error={errors.email && touched.email ? true : false}
+                >
                   <Field type="email" name="email" placeholder="Email" />
                   <ErrorMessage component={ErrorField} name="email" />
                 </InputField>
                 <InputField
                   label="Password"
-                  error={errors.password && touched.password}
+                  error={errors.password && touched.password ? true : false}
                 >
                   <Field
                     type="password"
@@ -81,7 +84,9 @@ const Login = () => {
                   <ErrorMessage component={ErrorField} name="password" />
                 </InputField>
                 {ENVIRONMENT !== 'development' && (
-                  <InputField error={errors.recaptcha && touched.recaptcha}>
+                  <InputField
+                    error={errors.recaptcha && touched.recaptcha ? true : false}
+                  >
                     <Field
                       component={Recaptcha}
                       sitekey={RECAPTCHA_PUBLIC_KEY}

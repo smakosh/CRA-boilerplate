@@ -78,18 +78,21 @@ const Register = () => {
               <CardWrapper as={Card}>
                 <InputField
                   label="Username"
-                  error={errors.username && touched.username}
+                  error={errors.username && touched.username ? true : false}
                 >
                   <Field type="text" name="username" placeholder="Username" />
                   <ErrorMessage component={ErrorField} name="username" />
                 </InputField>
-                <InputField label="Email" error={errors.email && touched.email}>
+                <InputField
+                  label="Email"
+                  error={errors.email && touched.email ? true : false}
+                >
                   <Field type="email" name="email" placeholder="Email" />
                   <ErrorMessage component={ErrorField} name="email" />
                 </InputField>
                 <InputField
                   label="Password"
-                  error={errors.password && touched.password}
+                  error={errors.password && touched.password ? true : false}
                 >
                   <Field
                     type="password"
@@ -100,7 +103,11 @@ const Register = () => {
                 </InputField>
                 <InputField
                   label="Confirm password"
-                  error={errors.confirmPassword && touched.confirmPassword}
+                  error={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? true
+                      : false
+                  }
                 >
                   <Field
                     type="password"
@@ -110,7 +117,9 @@ const Register = () => {
                   <ErrorMessage component={ErrorField} name="confirmPassword" />
                 </InputField>
                 {ENVIRONMENT !== 'development' && (
-                  <InputField error={errors.recaptcha && touched.recaptcha}>
+                  <InputField
+                    error={errors.recaptcha && touched.recaptcha ? true : false}
+                  >
                     <Field
                       component={Recaptcha}
                       sitekey={RECAPTCHA_PUBLIC_KEY}
