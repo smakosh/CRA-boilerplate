@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import setAuthToken from 'helpers/setAuthToken'
+import storage from 'helpers/storage'
 import { BASE_URL } from 'config'
 
 const useFetchUser = (user, dispatch) => {
@@ -8,14 +9,14 @@ const useFetchUser = (user, dispatch) => {
 
   const fetchUser = useCallback(async () => {
     try {
-      const token = window.localStorage.getItem('token')
+      const token = storage.get('token')
       if (token) {
         const { data } = await axios.post(`${BASE_URL}token/verify`, { token })
 
         setAuthToken(token)
         await dispatch({ type: 'SAVE_USER', payload: data?.user })
 
-        window.localStorage.setItem('token', token)
+        storage.set('token', token)
         setLoading(false)
       }
       setLoading(false)
