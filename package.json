@@ -22,7 +22,7 @@
     "yup": "^0.28.3"
   },
   "scripts": {
-    "start": "cross-env PORT=8000 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-macros": "^2.8.0",
-    "cross-env": "^7.0.2"
+    "babel-plugin-macros": "^2.8.0"
   }
 }
