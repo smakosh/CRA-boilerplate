@@ -1,6 +1,7 @@
 import history from 'helpers/history'
 import axios from 'axios'
 import setAuthToken from 'helpers/setAuthToken'
+import storage from 'helpers/storage'
 import { BASE_URL } from 'config'
 import { DispatchUser } from 'features/auth/interfaces'
 
@@ -29,7 +30,7 @@ export const login = async ({
 
     dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
-    window.localStorage.setItem('token', data.token)
+		storage.set('token', data.token)
     setSubmitting(false)
 
     history.push('/')
@@ -50,7 +51,7 @@ export const register = async ({
 
     dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
-    window.localStorage.setItem('token', data.token)
+    storage.set('token', data.token)
     setSubmitting(false)
 
     history.push('/')
@@ -64,7 +65,7 @@ export const logout = async (dispatch: DispatchUser) => {
     dispatch({ type: 'LOADING_TRUE' })
     dispatch({ type: 'LOGOUT' })
 
-    window.localStorage.removeItem('token')
+		storage.remove('token')
     setAuthToken(false)
 
     dispatch({ type: 'LOADING_FALSE' })
