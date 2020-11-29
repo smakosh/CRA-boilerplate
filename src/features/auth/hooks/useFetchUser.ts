@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import setAuthToken from 'helpers/setAuthToken'
+import storage from 'helpers/storage'
 import { BASE_URL } from 'config'
 import type { DispatchUser, StateUser } from 'features/auth/interfaces'
 
@@ -9,7 +10,7 @@ const useFetchUser = (user: StateUser, dispatch: DispatchUser) => {
 
   const fetchUser = useCallback(async () => {
     try {
-      const token = window.localStorage.getItem('token')
+      const token = storage.get('token')
 
       if (token) {
         dispatch({ type: 'LOADING_TRUE' })
@@ -21,11 +22,11 @@ const useFetchUser = (user: StateUser, dispatch: DispatchUser) => {
         setAuthToken(token)
         dispatch({ type: 'SAVE_USER', payload: data?.user })
 
-        window.localStorage.setItem('token', token)
+        storage.set('token', token)
         dispatch({ type: 'LOADING_FALSE' })
       }
     } catch (err) {
-      window.localStorage.removeItem('token')
+      storage.remove('token')
       setError(err.response.message)
       dispatch({ type: 'LOADING_FALSE' })
     }
