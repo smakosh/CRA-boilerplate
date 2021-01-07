@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@sentry/browser": "^5.15.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "formik": "^2.1.4",
     "react": "^17.0.1",
     "react-datepicker": "^2.16.0",
