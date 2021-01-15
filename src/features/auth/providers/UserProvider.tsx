@@ -1,6 +1,10 @@
-import React, { useReducer, createContext } from 'react'
+import React, { useReducer, createContext, Reducer } from 'react'
 import UserReducer, { INITIAL_STATE } from 'features/auth/reducers/UserReducer'
-import type { DispatchUser, StateUser } from 'features/auth/interfaces'
+import type {
+  DispatchUser,
+  StateUser,
+  UserActions,
+} from 'features/auth/interfaces'
 import useFetchUser from 'features/auth/hooks/useFetchUser'
 import Loading from 'ui/components/Loading'
 
@@ -12,7 +16,10 @@ export const UserDispatchContext = createContext<DispatchUser | undefined>(
 )
 
 const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, dispatchUser] = useReducer(UserReducer, INITIAL_STATE)
+  const [user, dispatchUser] = useReducer<Reducer<StateUser, UserActions>>(
+    UserReducer,
+    INITIAL_STATE
+  )
   const { loading } = useFetchUser(user, dispatchUser)
 
   if (!user || loading) return <Loading />

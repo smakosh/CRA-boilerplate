@@ -1,6 +1,6 @@
 import type { StateUser, UserActions } from 'features/auth/interfaces'
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: StateUser = {
   isLoggedIn: false,
   loading: false,
   data: null,

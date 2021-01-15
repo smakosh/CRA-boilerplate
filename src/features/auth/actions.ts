@@ -30,7 +30,7 @@ export const login = async ({
 
     dispatchUser({ type: 'SAVE_USER', payload: data?.user })
 
-		storage.set('token', data.token)
+    storage.set('token', data.token)
     setSubmitting(false)
 
     history.push('/')
@@ -65,14 +65,14 @@ export const logout = async (dispatch: DispatchUser) => {
     dispatch({ type: 'LOADING_TRUE' })
     dispatch({ type: 'LOGOUT' })
 
-		storage.remove('token')
+    storage.remove('token')
     setAuthToken(false)
 
     dispatch({ type: 'LOADING_FALSE' })
 
     history.push('/')
   } catch (err) {
-    await dispatch({ type: 'LOADING_FALSE' })
+    dispatch({ type: 'LOADING_FALSE' })
     console.log(err)
   }
 }
