@@ -6,8 +6,8 @@ const NotFound = () => <h2>404 Not Found</h2>
 
 const Authenticated = () => (
   <BrowserRouter>
+    <Header />
     <Routes>
-      <Header />
       <Route path="/" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

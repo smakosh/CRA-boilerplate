@@ -52,6 +52,15 @@ yarn start
 - SEO component ready and configured for you
 - Interfaces per feature
 
+## TODO
+- [ ] Add react-query to handle server state
+- [ ] Replace useFetchUser with a useQuery
+- [ ] Move to cookies
+- [ ] Setup React testing library
+- [ ] Setup Cypress
+- [ ] Setup Ontwik-UI with react-flex-ready
+- [ ] Include the full auth flow with reset and forgotten password
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more details

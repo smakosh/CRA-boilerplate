@@ -7,8 +7,8 @@ const NotFound = () => <h2>404 Not Found</h2>
 
 const Unauthenticated = () => (
   <BrowserRouter>
+    <Header />
     <Routes>
-      <Header />
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Register />} />
       <Route path="*" element={<NotFound />} />

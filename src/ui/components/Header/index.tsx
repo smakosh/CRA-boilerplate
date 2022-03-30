@@ -36,14 +36,9 @@ const Header = () => {
               >
                 Login
               </NavLink>
-              <NavLink
-                className={(navData) => (navData.isActive ? 'active' : '')}
-                to="/signup"
-              >
-                <Button as="a" size="large" variant="primary">
-                  Sign up
-                </Button>
-              </NavLink>
+              <Button as={NavLink} to="/signup" size="large" variant="primary">
+                Sign up
+              </Button>
             </>
           )}
         </Links>
