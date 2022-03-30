@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Recaptcha from 'react-google-recaptcha'
 import Spinner from 'react-spinkit'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -21,6 +20,7 @@ import {
 } from 'features/auth/components/shared-style'
 
 const Login = () => {
+  const navigate = useNavigate()
   const dispatchUser = useDispatchUser()
 
   return (
@@ -55,6 +55,7 @@ const Login = () => {
                 setFieldError,
                 setSubmitting,
                 values: { email, password },
+                navigate,
               })
             } catch (err) {
               setSubmitting(false)

@@ -1,8 +1,8 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { Wrapper, Label } from './styles'
 
-interface InputFieldProps {
-  children: React.ReactNode
+type InputFieldProps = {
+  children: ReactNode
   label?: string
   error?: boolean
   relative?: boolean

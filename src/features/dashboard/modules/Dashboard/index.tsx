@@ -1,4 +1,3 @@
-import React from 'react'
 import Container from 'ui/components/Container'
 import SEO from 'ui/components/SEO'
 

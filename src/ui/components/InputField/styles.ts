@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-interface WrapperProps {
+type WrapperProps = {
   relative?: boolean
   error?: boolean
 }

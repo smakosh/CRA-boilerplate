@@ -1,9 +1,10 @@
-import history from 'helpers/history'
-import axios from 'axios'
+import { NavigateFunction } from 'react-router-dom'
+import axios, { AxiosError } from 'axios'
+import { ServerError } from 'types'
+import { BASE_URL } from 'config'
 import setAuthToken from 'helpers/setAuthToken'
 import storage from 'helpers/storage'
-import { BASE_URL } from 'config'
-import { DispatchUser } from 'features/auth/interfaces'
+import { DispatchUser } from 'features/auth/types'
 
 export type UserValues = {
   email: string
@@ -16,6 +17,7 @@ type LoginSignupArgs = {
   setFieldError: (key: string, value: string) => void
   setSubmitting: (arg: boolean) => void
   values: UserValues
+  navigate: NavigateFunction
 }
 
 export const login = async ({
@@ -23,6 +25,7 @@ export const login = async ({
   setFieldError,
   setSubmitting,
   values,
+  navigate,
 }: LoginSignupArgs) => {
   try {
     const { data } = await axios.post(`${BASE_URL}auth/signin`, values)
@@ -33,9 +36,17 @@ export const login = async ({
     storage.set('token', data.token)
     setSubmitting(false)
 
-    history.push('/')
-  } catch (err) {
-    setFieldError('email', err?.response?.data)
+    navigate('/')
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>
+      if (serverError && serverError.response) {
+        setFieldError(
+          'email',
+          serverError.response.data.message || 'Something went wrong'
+        )
+      }
+    }
   }
 }
 
@@ -44,6 +55,7 @@ export const register = async ({
   setFieldError,
   setSubmitting,
   values,
+  navigate,
 }: LoginSignupArgs) => {
   try {
     const { data } = await axios.post(`${BASE_URL}auth/signup`, values)
@@ -54,13 +66,24 @@ export const register = async ({
     storage.set('token', data.token)
     setSubmitting(false)
 
-    history.push('/')
-  } catch (err) {
-    setFieldError('email', err?.response?.data)
+    navigate('/')
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>
+      if (serverError && serverError.response) {
+        setFieldError(
+          'email',
+          serverError.response.data.message || 'Something went wrong'
+        )
+      }
+    }
   }
 }
 
-export const logout = async (dispatch: DispatchUser) => {
+export const logout = async (
+  dispatch: DispatchUser,
+  navigate: NavigateFunction
+) => {
   try {
     dispatch({ type: 'LOADING_TRUE' })
     dispatch({ type: 'LOGOUT' })
@@ -70,7 +93,7 @@ export const logout = async (dispatch: DispatchUser) => {
 
     dispatch({ type: 'LOADING_FALSE' })
 
-    history.push('/')
+    navigate('/')
   } catch (err) {
     dispatch({ type: 'LOADING_FALSE' })
     console.log(err)

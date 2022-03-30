@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { ServerError } from 'types'
 import setAuthToken from 'helpers/setAuthToken'
 import storage from 'helpers/storage'
 import { BASE_URL } from 'config'
-import type { DispatchUser, StateUser } from 'features/auth/interfaces'
+import type { DispatchUser, StateUser } from 'features/auth/types'
 
 const useFetchUser = (user: StateUser, dispatch: DispatchUser) => {
   const [error, setError] = useState('')
@@ -25,9 +26,14 @@ const useFetchUser = (user: StateUser, dispatch: DispatchUser) => {
         storage.set('token', token)
         dispatch({ type: 'LOADING_FALSE' })
       }
-    } catch (err) {
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ServerError>
+        if (serverError && serverError.response) {
+          setError(serverError.response.data.message || 'Something went wrong')
+        }
+      }
       storage.remove('token')
-      setError(err.response.message)
       dispatch({ type: 'LOADING_FALSE' })
     }
   }, [dispatch])

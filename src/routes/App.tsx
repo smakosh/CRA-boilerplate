@@ -1,10 +1,10 @@
-import React, { Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import Spinner from 'react-spinkit'
+import { ThemeProvider } from 'styled-components'
 import UserProvider from 'features/auth/providers/UserProvider'
 import useUser from 'features/auth/hooks/useUser'
-import GlobalStyle from 'ui/theme/global-style'
-import { ThemeProvider } from 'styled-components'
 import theme from 'ui/theme/theme'
+import GlobalStyle from 'ui/theme/global-style'
 
 const Authenticated = lazy(() => import('./Authenticated'))
 const Unauthenticated = lazy(() => import('./Unauthenticated'))

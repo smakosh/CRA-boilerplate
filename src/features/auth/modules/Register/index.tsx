@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Recaptcha from 'react-google-recaptcha'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -21,6 +20,7 @@ import {
 } from 'features/auth/components/shared-style'
 
 const Register = () => {
+  const navigate = useNavigate()
   const dispatchUser = useDispatchUser()
 
   return (
@@ -41,7 +41,7 @@ const Register = () => {
             email: Yup.string().email().required(),
             password: Yup.string().required(),
             confirmPassword: Yup.string().when('password', {
-              is: (val) => (val && val.length > 0 ? true : false),
+              is: (val: string) => (val && val.length > 0 ? true : false),
               then: Yup.string().oneOf(
                 [Yup.ref('password')],
                 'Passwords do not match'
@@ -66,6 +66,7 @@ const Register = () => {
                 setFieldError,
                 setSubmitting,
                 values: { username, email, password },
+                navigate,
               })
             } catch (err) {
               setSubmitting(false)

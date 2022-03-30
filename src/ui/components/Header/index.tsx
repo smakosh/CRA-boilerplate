@@ -1,5 +1,4 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import Button from 'ui/components/Button'
 import Container from 'ui/components/Container'
 import Logo from 'ui/components/Logo'
@@ -11,6 +10,7 @@ import { Wrapper, Flex, Links } from './styles'
 const Header = () => {
   const dispatchUser = useDispatchUser()
   const user = useUser()
+  const navigate = useNavigate()
 
   return (
     <Wrapper>
@@ -22,7 +22,7 @@ const Header = () => {
           {user.isLoggedIn ? (
             <Button
               type="button"
-              onClick={() => logout(dispatchUser)}
+              onClick={() => logout(dispatchUser, navigate)}
               size="large"
               variant="secondary"
             >
@@ -30,7 +30,10 @@ const Header = () => {
             </Button>
           ) : (
             <>
-              <NavLink activeClassName="active" exact to="/">
+              <NavLink
+                className={(navData) => (navData.isActive ? 'active' : '')}
+                to="/"
+              >
                 Login
               </NavLink>
               <Button as={NavLink} to="/signup" size="large" variant="primary">
