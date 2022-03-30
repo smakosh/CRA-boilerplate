@@ -1,9 +1,5 @@
 # CRA boilerplate
 
-## JavaScript version
-
-> [JavaScript version](https://github.com/smakosh/CRA-boilerplate)
-
 ## Getting started
 
 1- Clone the repository
