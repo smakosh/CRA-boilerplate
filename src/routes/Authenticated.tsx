@@ -1,19 +1,17 @@
-import React from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
-import history from 'helpers/history'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from 'ui/components/Header'
 import Dashboard from 'features/dashboard/modules/Dashboard'
 
 const NotFound = () => <h2>404 Not Found</h2>
 
 const Authenticated = () => (
-  <Router history={history}>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={Dashboard} />
-      <Route component={NotFound} />
-    </Switch>
-  </Router>
+  <BrowserRouter>
+    <Routes>
+      <Header />
+      <Route path="/" element={<Dashboard />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
 )
 
 export default Authenticated

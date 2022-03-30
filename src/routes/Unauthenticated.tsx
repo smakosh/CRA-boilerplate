@@ -1,6 +1,4 @@
-import React from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
-import history from 'helpers/history'
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import Login from 'features/auth/modules/Login'
 import Register from 'features/auth/modules/Register'
 import Header from 'ui/components/Header'
@@ -8,14 +6,14 @@ import Header from 'ui/components/Header'
 const NotFound = () => <h2>404 Not Found</h2>
 
 const Unauthenticated = () => (
-  <Router history={history}>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={Login} />
-      <Route path="/signup" component={Register} />
-      <Route component={NotFound} />
-    </Switch>
-  </Router>
+  <BrowserRouter>
+    <Routes>
+      <Header />
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
 )
 
 export default Unauthenticated

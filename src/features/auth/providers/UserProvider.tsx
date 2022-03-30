@@ -1,14 +1,10 @@
-import React, { useReducer, createContext, Reducer } from 'react'
+import { useReducer, createContext, Reducer, ReactNode } from 'react'
 import UserReducer, { INITIAL_STATE } from 'features/auth/reducers/UserReducer'
-import type {
-  DispatchUser,
-  StateUser,
-  UserActions,
-} from 'features/auth/interfaces'
+import type { DispatchUser, StateUser, UserActions } from 'features/auth/types'
 import useFetchUser from 'features/auth/hooks/useFetchUser'
 import Loading from 'ui/components/Loading'
 
-type UserProviderProps = { children: React.ReactNode }
+type UserProviderProps = { children: ReactNode }
 
 export const UserContext = createContext<StateUser | undefined>(undefined)
 export const UserDispatchContext = createContext<DispatchUser | undefined>(

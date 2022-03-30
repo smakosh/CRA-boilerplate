@@ -1,4 +1,3 @@
-import React from 'react'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import defaultCover from 'assets/seo/cover.png'
@@ -9,7 +8,7 @@ import {
   TWITTER_ACCOUNT_URL,
 } from 'config'
 
-interface SEOProps {
+type SEOProps = {
   url?: string
   title?: string
   description?: string

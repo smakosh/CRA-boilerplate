@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-interface ButtonProps {
+type ButtonProps = {
   wide?: boolean
   state?: string
   variant: string
